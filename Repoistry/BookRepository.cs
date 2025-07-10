@@ -28,9 +28,9 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.VisualBasic;
 using BookStoreBackend.Controllers;
 
-namespace BookRepo
+namespace Repo
 {
-    public class BookRepoistry : GenricRepoistry<Book>// because ef core require this to be a class 
+    public class BookRepoistry : GenricRepoistry<Order>// because ef core require this to be a class 
     {
         private readonly DbSet<Book> _dbSet;
         private readonly BookstoreContext db;

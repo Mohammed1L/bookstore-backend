@@ -13,10 +13,10 @@ using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
-namespace BookRepo
+namespace Repo
 {
     public class GenricRepoistry<T> where T : class // because ef core require this to be a class 
-    {
+        {
         private readonly DbSet<T> _dbSet;
         private readonly BookstoreContext _context;// collection of genric entites tables 
         public GenricRepoistry(BookstoreContext db)

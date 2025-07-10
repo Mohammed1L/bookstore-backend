@@ -1,6 +1,7 @@
 using BookstoreDB.Data;
 using Microsoft.EntityFrameworkCore;
-using BookRepo; // Adjust this to your actual namespace
+using Repo;
+using services; // Adjust this to your actual namespace
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddScoped(typeof(GenricRepoistry<>));
 
 // Register the concrete BookRepoistry so it can be injected
 builder.Services.AddScoped<BookRepoistry>();
+builder.Services.AddScoped<OrderRepo>();
+builder.Services.AddScoped<AuthRepo>();
+builder.Services.AddScoped<TokenServices>();
 
 // Configure CORS to allow your Angular app running on localhost:4200
 builder.Services.AddCors(options =>
