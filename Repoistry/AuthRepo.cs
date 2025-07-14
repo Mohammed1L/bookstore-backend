@@ -39,7 +39,8 @@ namespace Repo
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == login.Email);
             if (user == null)
             {
-                return "User was not found";
+                throw new UnauthorizedAccessException("Password or user are wrong.");
+                
             }
             else
             {
@@ -55,7 +56,8 @@ namespace Repo
                 }
                 else
                 {
-                    return "User information does not match";
+                    throw new UnauthorizedAccessException("Password or user are wrong."); // Handeled in the middleware
+                
                 }
             }
         }
@@ -82,7 +84,8 @@ namespace Repo
                 }
                 else
                 {
-                    return "user is not added";
+                    throw new KeyNotFoundException("User can't be found"); 
+                   
 
                 }
 

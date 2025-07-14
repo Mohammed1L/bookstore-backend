@@ -31,20 +31,10 @@ namespace BookStoreBackend.Controllers
         public async Task<IActionResult> register([FromBody] RegisterDto register)
         {
             string message = await _authRepo.register(register);
-            Console.WriteLine(message);
-            if (message == "User was not found")
-            {
-                return NotFound();
-
-            }
-            else if (message == "User information does not match")
-            {
-                return BadRequest("User information does not match");
-            }
-            else
-            {
+          
+           
                 return Ok(message);
-            }
+            
 
 
 

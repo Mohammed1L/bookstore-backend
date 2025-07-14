@@ -1,6 +1,7 @@
 using BookstoreDB.Data;
 using Microsoft.EntityFrameworkCore;
 using Repo;
+using Middlewares;
 using services; // Adjust this to your actual namespace
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +53,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseMiddleware<ExceptionHandling>();
 app.MapControllers();
 
 app.Run();
