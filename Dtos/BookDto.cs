@@ -14,5 +14,6 @@ namespace BookStoreBackend.Dtos
         public int Inventory { get; set; }
         
         
+        
     }
 }

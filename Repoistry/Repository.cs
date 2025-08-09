@@ -54,6 +54,21 @@ namespace Repo
 
             }
         }
+
+        public async Task<T> UpdateById(long Id, T entity)
+        {
+            var existingEntity = await _dbSet.FindAsync(Id);
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+                await _context.SaveChangesAsync();
+                return existingEntity;
+            }
+            else
+            {
+                return null;
+            }
+        }
         
        
     }

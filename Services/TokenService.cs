@@ -15,20 +15,22 @@ namespace services
     public class TokenServices
     {
         private readonly IConfiguration _config;
-        public TokenServices(IConfiguration config)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public TokenServices(IConfiguration config, IHttpContextAccessor httpContextAccessor)
         {
             _config = config;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
 
 
 
-        public string GenerateToken(string userName, string role)
+        public string GenerateToken(String UserId, string role)
         {
             var claims = new[]
             {
-                    new Claim(ClaimTypes.Name, userName),
+                    new Claim(ClaimTypes.NameIdentifier,UserId ),
                     new Claim(ClaimTypes.Role, role)
                 };
 
@@ -44,6 +46,22 @@ namespace services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public string GetEmailFromToken()
+        {
+            
+            var user = _httpContextAccessor.HttpContext?.User;
+            foreach (var claim in user.Claims)
+{
+       Console.WriteLine($"Claim Type: {claim.Type}, Value: {claim.Value}");
+}
+            if (user == null || !user.Identity.IsAuthenticated)
+            {
+                Console.WriteLine("User is not auth");
+                return null;
+            }
+            var email = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return email;
         }
     }
 }

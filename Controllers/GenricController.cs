@@ -18,6 +18,7 @@ using Repo;
 namespace BookStoreBackend.Controllers;
 using BookStoreBackend.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -35,7 +36,7 @@ public class GenricController<T> : ControllerBase where T : class
 
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public virtual async Task<IActionResult> GetAll()
     {
         var items = await _db.GetAll();
         return Ok(items);
@@ -48,6 +49,10 @@ public class GenricController<T> : ControllerBase where T : class
         
         return Ok(item);
     }
+
+  
+    [Authorize(Roles = "Admin")] // Only admins can edit books
+
     [HttpDelete("{Id}")]
     public async Task<IActionResult> delete(long Id)
     {

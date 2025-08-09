@@ -27,13 +27,44 @@ namespace BookStoreBackend.Controllers
                   _repo = repo;
             }
 
+        [HttpPut("update-user/{Id}")]
+        public async Task<IActionResult> UpdateUser(long Id, [FromBody] User user)
+        {
+            var existingUser = await _repo.GetById(Id);
+            if (existingUser == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var existingUserObj = (User)existingUser;
+            
+            // Only update non-null properties
+            if (!string.IsNullOrEmpty(user.Email))
+                existingUserObj.Email = user.Email;
+            if (!string.IsNullOrEmpty(user.Role))
+                existingUserObj.Role = user.Role;
+            
+            // Don't allow updating hashed password directly for security
+            // Password updates should be done through a separate endpoint
+
+            var updatedUser = await _repo.UpdateById(Id, existingUserObj);
+            if (updatedUser != null)
+            {
+                return Ok("User updated successfully");
+            }
+            else
+            {
+                return BadRequest("Failed to update user");
+            }
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> register([FromBody] RegisterDto register)
         {
             string message = await _authRepo.register(register);
           
            
-                return Ok(message);
+                return Ok(new { message = "User is added" });
             
 
 

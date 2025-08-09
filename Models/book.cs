@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BookStoreBackend.Models;
 
@@ -16,6 +17,8 @@ public class Book : BaseClass
     [Required]
     public decimal Price { get; set; }
     public int Inventory { get; set; }
+    [JsonPropertyName("imageUrl")]
+    public string ImageUrl { get; set; } = string.Empty;
     
 
     // Foreign Keys

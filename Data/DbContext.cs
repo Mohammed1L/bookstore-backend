@@ -16,7 +16,7 @@ public class BookstoreContext : DbContext
     public DbSet<Author> Authors { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
-
+    public DbSet<Store> Stores { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
