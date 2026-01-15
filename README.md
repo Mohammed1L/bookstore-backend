@@ -1,3 +1,5 @@
+Bookstore Project — Backend (.NET)
+
 The Bookstore Project Backend is a RESTful API built with C# and .NET for an online bookstore system.
 It is developed as a training project to apply clean architecture, SOLID principles, and best practices in backend development.
 
@@ -12,19 +14,27 @@ The backend is responsible for:
 Design Principles
 
 The backend is designed with:
-	•	SOLID Principles
-	•	Single Responsibility: Controllers, Services, and Repositories have clear, isolated responsibilities.
-	•	Open/Closed: Services are extensible via interfaces without modifying existing logic.
-	•	Liskov Substitution: Interfaces are respected across implementations.
-	•	Interface Segregation: Small, role-specific interfaces.
-	•	Dependency Inversion: High-level modules depend on abstractions, not concrete implementations.
-	•	Layered Architecture
+
+SOLID Principles
+	•	Single Responsibility
+Controllers, Services, and Repositories have clear and isolated responsibilities.
+	•	Open/Closed
+Services are extensible via interfaces without modifying existing logic.
+	•	Liskov Substitution
+Interfaces are respected across implementations.
+	•	Interface Segregation
+Small, role-specific interfaces.
+	•	Dependency Inversion
+High-level modules depend on abstractions, not concrete implementations.
+
+Architecture
 	•	Controllers (API Layer)
 	•	Services (Business Logic)
 	•	Repositories (Data Access)
 	•	DTOs and Mapping
 	•	Domain Models
-	•	Dependency Injection using the built-in .NET container
+
+Dependency Injection is implemented using the built-in .NET container.
 
 ⸻
 
@@ -39,16 +49,17 @@ Tech Stack (Backend)
 ⸻
 
 User Roles
-	•	Admin
+
+Admin
 	•	Manage users and sellers
 	•	Control permissions
-	•	Seller
+
+Seller
 	•	Add and manage books
-	•	Regular User
+
+Regular User
 	•	Register and authenticate
 	•	Browse and buy books
-  ---
-
 ## 🗄️ ER Diagram
 
 <img width="845" height="585" alt="image" src="https://github.com/user-attachments/assets/3320df17-7712-4b18-8f0f-f3ba44cfef07" />
